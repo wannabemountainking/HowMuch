@@ -7,29 +7,22 @@
 
 import Foundation
 
-
-enum Screen: Equatable {
-	case levelSelect, game, result
-}
-
 enum Operation: CaseIterable {
-	case add, subtract, multiply, none
+	case add, subtract, multiply
 	
 	func calculate(lhs: Int, rhs: Int) -> Int {
-		switch self {
-		case .add:
-			return lhs + rhs
-		case .subtract:
-			guard lhs >= rhs else {
-				print("앞의 수가 뒤의 수보다 작습니다")
-				return -1
-			}
-			return lhs - rhs
-		case .multiply:
-			return lhs * rhs
-		default:
-			print("none")
-		}
+        switch self {
+        case .add:
+            return lhs + rhs
+        case .subtract:
+            guard lhs >= rhs else {
+                print("앞의 수가 뒤의 수보다 작습니다")
+                return -1
+            }
+            return lhs - rhs
+        case .multiply:
+            return lhs * rhs
+        }
 	}
 }
 
@@ -54,26 +47,18 @@ struct Question {
 	var operation: Operation
 	var lhs: Int
 	var rhs: Int
-	var boolsEye: Bool? = nil
+	var boolsEye: Bool?
 	
 	init(level: Level) {
-		self.lhs = level.generateNumbers().first ?? -9999
-		self.rhs = level.generateNumbers().last ?? -9999
-		var ops = Array(Operation.allCases)
-		ops.removeLast()
-		self.operation = ops.randomElement() ?? .none
+        let numbers: [Int] = level.generateNumbers()
+        self.lhs = numbers[0]
+        self.rhs = numbers[1]
+        let allTheOperations = Operation.allCases
+        self.operation = allTheOperations[Int.random(in: 0..<allTheOperations.count)]
 	}
 	
 	func answer() -> Int {
-		switch operation {
-		case .add:
-			return lhs + rhs
-		case .subtract:
-			return lhs - rhs
-		case .multiply:
-			return lhs * rhs
-		case .none:
-			return -9999
-		}
+        operation.calculate(lhs: lhs, rhs: rhs)
+
 	}
 }
