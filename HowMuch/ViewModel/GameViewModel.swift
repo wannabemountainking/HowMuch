@@ -35,7 +35,7 @@ final class GameViewModel {
     var resultMessage: String {
         """
         \(correctCount / questions.count) 점 획득!
-        
+        \(["⭐️", "⭐️", "⭐️", "⭐️", "⭐️"][0..<starCount].joined())
         \(questions.count) 문제 중
         \(correctCount) 문제를 맞췄습니다
         """
@@ -44,13 +44,23 @@ final class GameViewModel {
     var starCount: Int {
         let score = correctCount / questions.count
         switch score {
-        case 1...19: return 1
-        case 20...39: return 2
-        case 40...59: return 3
-        case 60...79: return 4
-        case 80...99: return 5
-        case 100: return 6
+        case 1...25: return 1
+        case 26...50: return 2
+        case 51...75: return 3
+        case 76...99: return 4
+        case 100: return 5
         default: return 0
         }
     }
+    
+    func checkAnswer() {
+        let rightAnswer = questions[currentIndex].answer()
+        if let userAnswer = Int(userInput) {
+            questions[currentIndex].boolsEye = (rightAnswer == userAnswer)
+        } else {
+            questions[currentIndex].boolsEye = false
+        }
+    }
+    func nextQuestion() {}
+    func generateQuestions(level: Level) {}
 }
