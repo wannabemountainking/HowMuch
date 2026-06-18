@@ -11,6 +11,24 @@ import Foundation
 enum Level: CaseIterable {
     case one, two, three, four
     
+    var id: Int {
+        switch self {
+        case .one: return 1
+        case .two: return 2
+        case .three: return 3
+        case .four: return 4
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .one: return "예) 2 + 6, 3 - 7"
+        case .two: return "예) 65 - 4, 94 - 3"
+        case .three: return "예) 325 - 9, 543 + 2"
+        case .four: return "예) 34 + 55, 63 - 32"
+        }
+    }
+    
     func generateNumbers() -> [Int] {
         switch self {
         case .one:

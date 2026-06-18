@@ -22,3 +22,12 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+enum HexColors {
+    // 메인 배경 (빨간색)
+    static let levelSelectBackground: String = "#FF6B6B"
+    // 단계 이름
+    static let levelSelectGrade: String = "#A32D2D"
+    // 2 단계 이름
+    static let levelSelectDescription: String = "#888888"
+}
