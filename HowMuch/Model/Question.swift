@@ -7,10 +7,28 @@
 
 import Foundation
 
+
+enum Level: CaseIterable {
+    case one, two, three, four
+    
+    func generateNumbers() -> [Int] {
+        switch self {
+        case .one:
+            return [Int.random(in: 0...9), Int.random(in: 0...9)].sorted(by: { $0 > $1 })
+        case .two:
+            return [Int.random(in: 10...99), Int.random(in: 0...9)]
+        case .three:
+            return [Int.random(in: 100...999), Int.random(in: 0...9)]
+        case .four:
+            return [Int.random(in: 10...99), Int.random(in: 10...99)].sorted(by: { $0 > $1 })
+        }
+    }
+}
+
 enum Operation: CaseIterable {
-	case add, subtract, multiply
-	
-	func calculate(lhs: Int, rhs: Int) -> Int {
+    case add, subtract, multiply
+    
+    func calculate(lhs: Int, rhs: Int) -> Int {
         switch self {
         case .add:
             return lhs + rhs
@@ -23,31 +41,15 @@ enum Operation: CaseIterable {
         case .multiply:
             return lhs * rhs
         }
-	}
-}
-
-enum Level: CaseIterable {
-	case one, two, three, four
-	
-	func generateNumbers() -> [Int] {
-		switch self {
-		case .one:
-			return [Int.random(in: 0...9), Int.random(in: 0...9)].sorted(by: { $0 > $1 })
-		case .two:
-			return [Int.random(in: 10...99), Int.random(in: 0...9)]
-		case .three:
-			return [Int.random(in: 100...999), Int.random(in: 0...9)]
-		case .four:
-			return [Int.random(in: 10...99), Int.random(in: 10...99)].sorted(by: { $0 > $1 })
-		}
-	}
+    }
 }
 
 struct Question {
 	var operation: Operation
 	var lhs: Int
 	var rhs: Int
-	var boolsEye: Bool?
+	var isCorrect: Bool? = nil
+    
 	
 	init(level: Level) {
         let numbers: [Int] = level.generateNumbers()
