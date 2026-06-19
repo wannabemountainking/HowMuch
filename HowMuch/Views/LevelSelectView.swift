@@ -11,7 +11,8 @@ import SwiftUI
 // 단계 선택 화면(intro)
 struct LevelSelectView: View {
     
-    @State private var vm: GameViewModel = .init()
+	@Environment(GameViewModel.self) var vm
+	
     let columns = [
         GridItem(.flexible(), spacing: 30),
         GridItem(.flexible(), spacing: 30)
@@ -23,8 +24,8 @@ struct LevelSelectView: View {
             Color(hex: HexColors.levelSelectBackground)
                 .ignoresSafeArea()
             // Content
-            VStack(alignment: .center, spacing: 50) {
-                VStack(spacing: 20) {
+            VStack(alignment: .center, spacing: 20) {
+                VStack(spacing: 10) {
                     Image(systemName: "pencil.and.outline")
                         .resizable()
                         .scaledToFit()
@@ -43,22 +44,23 @@ struct LevelSelectView: View {
                         .foregroundStyle(.white)
                         .kerning(2)
                 } //:VSTACK
-                .padding(.top, 50)
+				.padding(.vertical, 30)
                 
-                ScrollView {
-                    LazyVGrid(
-                        columns: columns,
-                        spacing: 30,
-                        pinnedViews: .sectionHeaders,
-                        content: {
-                            ForEach(Array(Level.allCases), id: \.id) { level in
-                                CardView(level: level)
-                            } //:LOOP
-                        }//: Content
-                    )//: LazyVGrid
-                    .scrollDisabled(true)
-                } //:SCROLL
+				GeometryReader { geometry in
+					VStack(spacing: 60) {
+						HStack(spacing: 60) {
+							CardView(level: .one)
+							CardView(level: .two)
+						}
+						HStack(spacing: 60) {
+							CardView(level: .three)
+							CardView(level: .four)
+						}
+					} //:VSTACK
+				}// : GeometryReader
+				.frame(maxHeight: .infinity)
             } //:VSTACK
+			.padding(20)
             .padding(.horizontal, 60)
             .padding(.bottom, 60)
         } //:ZSTACK
@@ -66,26 +68,34 @@ struct LevelSelectView: View {
     
     @ViewBuilder
     private func CardView(level: Level) -> some View {
-        RoundedRectangle(cornerRadius: 20)
-            .frame(maxWidth: .infinity)
-            .frame(height: 300)
-            .foregroundStyle(Color.white)
+        RoundedRectangle(cornerRadius: 25)
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.foregroundStyle(Color.white)
             .overlay(alignment: .center) {
-                VStack(alignment: .center, spacing: 50) {
+                VStack(alignment: .center) {
+					Spacer()
+					Spacer()
                     Text("\(level.id)단계")
-                        .font(.system(size: 48))
+                        .font(.system(size: 36))
                         .fontWeight(.bold)
                         .foregroundStyle(Color(hex: HexColors.levelSelectGrade))
                         .kerning(4)
+					Spacer()
                     Text(level.description)
-                        .font(.title)
+						.font(.system(size: 24))
                         .fontWeight(.light)
                         .foregroundStyle(Color(hex: HexColors.levelSelectDescription))
+					Spacer()
+					Spacer()
                 }
             }
+			.onTapGesture {
+				vm.startGame(level: level)
+			}
     }
 }
 
 #Preview {
     LevelSelectView()
+		.environment(GameViewModel())
 }

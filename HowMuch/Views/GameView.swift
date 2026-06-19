@@ -10,6 +10,9 @@ import SwiftUI
 
 /// 문제 풀기 화면
 struct GameView: View {
+	
+	
+	
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

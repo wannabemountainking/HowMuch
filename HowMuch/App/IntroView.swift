@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct IntroView: View {
+	
+	@State private var vm: GameViewModel = .init()
+	
     var body: some View {
-		NavigationStack {
-			LevelSelectView()
-		}
-    }
+		ZStack {
+			switch vm.currentScreen {
+				case .levelSelect: LevelSelectView()
+				case .game: GameView()
+				case .result: ResultView()
+			} //:CONDITION
+		} //:ZSTACK
+		.environment(vm)
+		.animation(.easeInOut, value: vm.currentScreen)
+    }//:body
 }
 
 #Preview {
