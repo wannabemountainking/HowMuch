@@ -12,15 +12,26 @@ enum Screen: Equatable {
     case levelSelect, game, result
 }
 
-extension Color {
-    init(hex: String) {
-        let intHex = Int(hex.trimmingCharacters(in: CharacterSet(charactersIn: "#")), radix: 16) ?? 0
-        let maxValue: Double =  255
-        let r: Double = Double(intHex >> 16 & 0xFF) / maxValue
-        let g: Double = Double(intHex >> 8 & 0xFF) / maxValue
-        let b: Double = Double(intHex & 0xFF) / maxValue
-        self.init(red: r, green: g, blue: b)
-    }
+enum Key {
+    case digit(Int)
+    case delete
+    case deleteAll
+    case confirm
+}
+
+enum ComponentRatio {
+    // 헤더
+    static let headerHeight: Double = 0.08
+    // 문제 표시 영역
+    static let questionAreaHeight: Double = 0.35
+    // 키패드 영역
+    static let keypadAreaHeight: Double = 0.57
+    // 키패드 버튼 높이 (키패드 영역 / 행 수 - 간격)
+    static let keyHeight: Double = keypadAreaHeight / 5   // 전체삭제+한칸 / 숫자3행 / 확인 = 5행
+    // 문제 폰트
+    static let questionFontSize: Double = 0.12
+    // 버튼 폰트
+    static let keyFontSize: Double = 0.06
 }
 
 enum HexColors {
@@ -53,4 +64,15 @@ enum HexColors {
 	static let confirmKey: String = "#1FB6AA"  // 틸 (확인)
 	static let confirmKeyText: String = "#FFFFFF"  // 흰색
 
+}
+
+extension Color {
+    init(hex: String) {
+        let intHex = Int(hex.trimmingCharacters(in: CharacterSet(charactersIn: "#")), radix: 16) ?? 0
+        let maxValue: Double =  255
+        let r: Double = Double(intHex >> 16 & 0xFF) / maxValue
+        let g: Double = Double(intHex >> 8 & 0xFF) / maxValue
+        let b: Double = Double(intHex & 0xFF) / maxValue
+        self.init(red: r, green: g, blue: b)
+    }
 }
