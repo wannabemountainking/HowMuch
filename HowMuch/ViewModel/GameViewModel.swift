@@ -12,13 +12,13 @@ import Observation
 @MainActor
 @Observable
 final class GameViewModel {
-    var currentLevel: Level?
+    var currentLevel: Level
     var currentScreen: Screen
     var currentIndex: Int
     var userInput: String
     var questions: [Question]
     
-    init(currentLevel: Level? = nil, currentScreen: Screen = .levelSelect, currentIndex: Int = 0, userInput: String = "", questions: [Question] = []) {
+	init(currentLevel: Level = .one, currentScreen: Screen = .levelSelect, currentIndex: Int = 0, userInput: String = "", questions: [Question] = []) {
         self.currentLevel = currentLevel
         self.currentScreen = currentScreen
         self.currentIndex = currentIndex
@@ -85,10 +85,7 @@ final class GameViewModel {
     }
     
     func addQuestion() {
-        guard let questionLevel = currentLevel else {
-            fatalError("startGame(level:Level) 호출 전에 addQuestion()이 실행됨")
-        }
-        questions.append(Question(level: questionLevel))
+        questions.append(Question(level: currentLevel))
     }
     
     func startGame(level: Level) {
@@ -98,4 +95,5 @@ final class GameViewModel {
         userInput = ""
         currentScreen = .game
     }
+	
 }

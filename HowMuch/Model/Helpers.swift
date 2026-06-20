@@ -17,6 +17,37 @@ enum Key {
     case delete
     case deleteAll
     case confirm
+	case none
+	
+	var text: String {
+		switch self {
+		case .digit(let number): return "\(number)"
+		case .delete: return "지우기"
+		case .deleteAll: return "모두 지우기"
+		case .confirm: return "확인"
+		case .none: return ""
+		}
+	}
+	
+	var keyBackground: String {
+		switch self {
+		case .digit: return HexColors.digitKey
+		case .delete: return HexColors.deleteKey
+		case .deleteAll: return HexColors.deleteAllKey
+		case .confirm: return HexColors.confirmKey
+		case .none: return HexColors.digitKeyBorder
+		}
+	}
+	
+	var keyTextColor: String {
+		switch self {
+		case .digit: return HexColors.digitKeyText
+		case .delete: return HexColors.deleteKeyText
+		case .deleteAll: return HexColors.deleteAllKeyText
+		case .confirm: return HexColors.confirmKeyText
+		case .none: return "#000000"
+		}
+	}
 }
 
 enum ComponentRatio {

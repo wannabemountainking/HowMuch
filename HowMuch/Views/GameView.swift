@@ -11,11 +11,39 @@ import SwiftUI
 /// 문제 풀기 화면
 struct GameView: View {
 	
-	@State private var answerText: String = ""
+	@Environment(GameViewModel.self) private var vm
 		
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		GeometryReader { geometry in
+			VStack(spacing: 0) {
+				HeaderView()
+					.frame(height: geometry.size.height * ComponentRatio.headerHeight)
+					.background(Color(hex: HexColors.gameHeader))
+				QuestionView()
+					.frame(height: geometry.size.height * ComponentRatio.questionAreaHeight)
+				KeypadView()
+					.frame(height: geometry.size.height * ComponentRatio.keypadAreaHeight)
+			} //:VSTACK
+		} //:GEOMETRY
     }
+	
+	@ViewBuilder
+	private func HeaderView() -> some View {
+		HStack {
+			Text("\(vm.currentLevel.id) 단계")
+				.font(.system(size: ))
+		}
+	}
+	
+	@ViewBuilder
+	private func QuestionView() -> some View {
+		
+	}
+	
+	@ViewBuilder
+	private func KeypadView() -> some View {
+		
+	}
 }
 
 #Preview {
