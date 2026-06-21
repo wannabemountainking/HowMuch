@@ -6,13 +6,33 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EEC1DB362FE7F47A00D7C8C2 /* Fredoka-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */; };
+		EEC1DB3A2FE7F67000D7C8C2 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EEBB4AB22FE278DF001B72C9 /* HowMuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowMuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Medium.ttf"; sourceTree = "<group>"; };
+		EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EEC1DB382FE7F4ED00D7C8C2 /* Exceptions for "HowMuch" folder in "HowMuch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = EEBB4AB12FE278DF001B72C9 /* HowMuch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EEBB4AB42FE278DF001B72C9 /* HowMuch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EEC1DB382FE7F4ED00D7C8C2 /* Exceptions for "HowMuch" folder in "HowMuch" target */,
+			);
 			path = HowMuch;
 			sourceTree = "<group>";
 		};
@@ -34,6 +54,8 @@
 			children = (
 				EEBB4AB42FE278DF001B72C9 /* HowMuch */,
 				EEBB4AB32FE278DF001B72C9 /* Products */,
+				EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */,
+				EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC1DB3A2FE7F67000D7C8C2 /* Nunito-SemiBold.ttf in Resources */,
+				EEC1DB362FE7F47A00D7C8C2 /* Fredoka-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +280,7 @@
 				DEVELOPMENT_TEAM = 43Q8PXVYS8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HowMuch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +313,7 @@
 				DEVELOPMENT_TEAM = 43Q8PXVYS8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HowMuch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

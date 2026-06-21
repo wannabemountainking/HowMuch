@@ -45,6 +45,20 @@ enum Level: CaseIterable {
 
 enum Operation: CaseIterable {
     case add, subtract, multiply
+	
+	var symbol: String {
+		switch self {
+		case .add: 
+			print("operation: add")
+			return "plus"
+		case .subtract:
+			print("operation: subtract")
+			return "minus"
+		case .multiply:
+			print("operation: multiply")
+			return "multiply"
+		}
+	}
     
     func calculate(lhs: Int, rhs: Int) -> Int {
         switch self {

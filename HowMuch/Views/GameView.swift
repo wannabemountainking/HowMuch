@@ -19,11 +19,12 @@ struct GameView: View {
                 HeaderView(geo: geometry)
 					.frame(height: geometry.size.height * ComponentRatio.headerHeight)
 					.background(Color(hex: HexColors.gameHeader))
-				QuestionView()
+				QuestionView(geo: geometry)
 					.frame(height: geometry.size.height * ComponentRatio.questionAreaHeight)
 				KeypadView()
 					.frame(height: geometry.size.height * ComponentRatio.keypadAreaHeight)
 			} //:VSTACK
+			.background(Color(hex: HexColors.gameBackground))
 		} //:GEOMETRY
     }
 	
@@ -31,8 +32,13 @@ struct GameView: View {
     private func HeaderView(geo: GeometryProxy) -> some View {
 		HStack {
             Text("\(vm.currentLevel.id) 단계")
-                .font(.title)
-                .fontWeight(.bold)
+				.font(
+					.system(
+						size: geo.size.height * ComponentRatio.headerHeight * 0.5,
+						weight: .semibold,
+						design: .rounded
+					)
+				)
                 .foregroundStyle(.white)
                 .padding(.leading)
                 .padding(.leading)
@@ -44,41 +50,41 @@ struct GameView: View {
                             if didAnswerCorrectly {
                                 Circle()
                                     .fill(.white)
-                                    .scaleEffect(1.7)
-                                    .overlay {
+									.frame(height: geo.size.height * ComponentRatio.headerHeight * 0.6)
+									.overlay(alignment: .center) {
                                         Image(systemName: "checkmark")
                                             .resizable()
                                             .scaledToFit()
-                                            .scaleEffect(1.5)
+											.frame(height: geo.size.height * ComponentRatio.headerHeight * 0.4)
                                             .foregroundStyle(.mint)
                                     }
                             } else {
                                 Circle()
-                                    .fill(.gray.opacity(0.5))
-                                    .scaleEffect(1.7)
-                                    .overlay {
+                                    .fill(.white.opacity(0.6))
+									.frame(height: geo.size.height * ComponentRatio.headerHeight * 0.5)
+									.overlay(alignment: .center) {
                                         Image(systemName: "circle")
                                             .resizable()
                                             .scaledToFit()
-                                            .scaleEffect(1.5)
-                                            .foregroundStyle(.pink)
+											.frame(height: geo.size.height * ComponentRatio.headerHeight * 0.3)
+											.foregroundStyle(.red)
                                     }
                             }
-                        } else {
-                            Circle()
-                                .fill(.gray.opacity(0.5))
-                                .scaleEffect(1.7)
-                                .font(.title)
                         }//:CONDITIONAL
-                    }//:CONDITIONAL
+					}//:CONDITIONAL
                 } //:LOOP
             } //:HSTACK
             
             Spacer()
             
             Text("\(vm.correctCount) / 15")
-                .font(.title)
-                .fontWeight(.bold)
+				.font(
+					.system(
+						size: geo.size.height * ComponentRatio.headerHeight * 0.5,
+						weight: .semibold,
+						design: .rounded
+					)
+				)
                 .foregroundStyle(.white)
                 .padding(.trailing)
                 .padding(.trailing)
@@ -90,8 +96,41 @@ struct GameView: View {
 	}
 	
 	@ViewBuilder
-	private func QuestionView() -> some View {
-		
+	private func QuestionView(geo: GeometryProxy) -> some View {
+		if let question = vm.questions.last {
+			HStack(alignment: .center) {
+				HStack(alignment: .center, spacing: 40) {
+					Text("\(question.lhs)")
+					Image(systemName: question.operation.symbol)
+						.font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.7))
+						.foregroundStyle(.red)
+					Text("\(question.rhs)")
+					Image(systemName: "equal")
+						.font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.7))
+						.foregroundStyle(.red)
+					RoundedRectangle(cornerRadius: 15)
+						.strokeBorder(Color.red, lineWidth: 5)
+						.frame(
+							width:  geo.size.height * ComponentRatio.questionAreaHeight * 0.4,
+							height: geo.size.height * ComponentRatio.questionAreaHeight * 0.4
+						)
+						.overlay {
+							Text(vm.userInput)
+						}
+						.background(Color.white)
+				}  //:HSTACK
+				.frame(height: geo.size.height * ComponentRatio.questionAreaHeight * 0.8)
+				.font(
+					.system(
+						size: geo.size.height * ComponentRatio.questionFontSize,
+						weight: .bold,
+						design: .rounded
+					)
+				)
+				.fontWeight(.black)
+			} //:HSTACK
+			.frame(height: geo.size.height * ComponentRatio.questionAreaHeight)
+		}//:CONDITIONAL
 	}
 	
 	@ViewBuilder
@@ -103,6 +142,11 @@ struct GameView: View {
 #Preview {
     let vm = GameViewModel()
     vm.startGame(level: .one)
+	
+	// 몇 개 문제에 답 상태 직접 주입
+	vm.questions[0].isCorrect = true
+	vm.questions[0].isCorrect = false  // 오답도 테스트
+	
     return GameView()
         .environment(vm)
 }
