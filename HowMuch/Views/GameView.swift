@@ -12,6 +12,14 @@ import SwiftUI
 struct GameView: View {
 	
     @Environment(GameViewModel.self) private var vm
+    
+    let rows: [[Key]] = [
+        [.deleteAll, .delete],
+        [.digit(2), .digit(3), .digit(4), .digit(5)],
+        [.digit(1), .digit(0), .digit(6)],
+        [.digit(9), .digit(8), .digit(7), .none],
+        [.confirm]
+    ]
 		
     var body: some View {
 		GeometryReader { geometry in
@@ -21,7 +29,8 @@ struct GameView: View {
 					.background(Color(hex: HexColors.gameHeader))
 				QuestionView(geo: geometry)
 					.frame(height: geometry.size.height * ComponentRatio.questionAreaHeight)
-				KeypadView()
+                    .background(Color(hex: HexColors.questionBackground))
+				KeypadView(geo: geometry)
 					.frame(height: geometry.size.height * ComponentRatio.keypadAreaHeight)
 			} //:VSTACK
 			.background(Color(hex: HexColors.gameBackground))
@@ -99,43 +108,56 @@ struct GameView: View {
 	private func QuestionView(geo: GeometryProxy) -> some View {
 		if let question = vm.questions.last {
 			HStack(alignment: .center) {
-				HStack(alignment: .center, spacing: 40) {
+				HStack(alignment: .center, spacing: 20) {
 					Text("\(question.lhs)")
 					Image(systemName: question.operation.symbol)
-						.font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.7))
-						.foregroundStyle(.red)
+						.font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.9))
+                        .foregroundStyle(Color(hex: HexColors.operatorText))
 					Text("\(question.rhs)")
 					Image(systemName: "equal")
-						.font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.7))
-						.foregroundStyle(.red)
+                        .font(.system(size: geo.size.height * ComponentRatio.questionFontSize * 0.9))
+                        .foregroundStyle(Color(hex: HexColors.operatorText))
 					RoundedRectangle(cornerRadius: 15)
-						.strokeBorder(Color.red, lineWidth: 5)
+                        .strokeBorder(Color.red, lineWidth: 5)
 						.frame(
-							width:  geo.size.height * ComponentRatio.questionAreaHeight * 0.4,
-							height: geo.size.height * ComponentRatio.questionAreaHeight * 0.4
+                            width:  geo.size.height * ComponentRatio.questionFontSize * 1.2,
+                            height: geo.size.height * ComponentRatio.questionFontSize * 1.2
 						)
 						.overlay {
 							Text(vm.userInput)
 						}
 						.background(Color.white)
 				}  //:HSTACK
+                .font(
+                    .system(
+                        size: geo.size.height * ComponentRatio.questionFontSize * 1.3,
+                        weight: .semibold,
+                        design: .rounded
+                    )
+                )
+                .fontWeight(.black)
 				.frame(height: geo.size.height * ComponentRatio.questionAreaHeight * 0.8)
-				.font(
-					.system(
-						size: geo.size.height * ComponentRatio.questionFontSize,
-						weight: .bold,
-						design: .rounded
-					)
-				)
-				.fontWeight(.black)
+                .foregroundStyle(Color(hex: HexColors.questionText))
 			} //:HSTACK
 			.frame(height: geo.size.height * ComponentRatio.questionAreaHeight)
 		}//:CONDITIONAL
 	}
 	
 	@ViewBuilder
-	private func KeypadView() -> some View {
-		
+    private func KeypadView(geo: GeometryProxy) -> some View {
+        VStack {
+            Grid(horizontalSpacing: 10, verticalSpacing: 10) {
+                ForEach(rows, id: \.self) { row in
+                    GridRow {
+                        ForEach(row, id: \.self) { key in
+                            ZStack(alignment: .center) {
+
+                            }
+                        }
+                    }
+                }
+            }
+        } //:VSTACK
 	}
 }
 

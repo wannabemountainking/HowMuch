@@ -12,7 +12,7 @@ enum Screen: Equatable {
     case levelSelect, game, result
 }
 
-enum Key {
+enum Key: Hashable {
     case digit(Int)
     case delete
     case deleteAll
