@@ -45,7 +45,20 @@ enum Key: Hashable {
 		case .delete: return HexColors.deleteKeyText
 		case .deleteAll: return HexColors.deleteAllKeyText
 		case .confirm: return HexColors.confirmKeyText
-		case .none: return "#000000"
+		case .none: return HexColors.digitKeyBorder
+		}
+	}
+	
+	var gridCellColums: Int {
+		switch self {
+		case .digit(let num):
+			return (num == 0) ? 2 : 1
+		case .delete, .deleteAll:
+			return 2
+		case .confirm:
+			return 4
+		case .none:
+			return 1
 		}
 	}
 }
@@ -56,11 +69,11 @@ enum ComponentRatio {
     // 문제 표시 영역
     static let questionAreaHeight: Double = 0.35
     // 키패드 영역
-    static let keypadAreaHeight: Double = 0.57
+    static let keypadAreaHeight: Double = 0.50
     // 키패드 버튼 높이 (키패드 영역 / 행 수 - 간격)
-    static let keyHeight: Double = keypadAreaHeight / 5   // 전체삭제+한칸 / 숫자3행 / 확인 = 5행
+    static let keyHeight: Double = 5   // 전체삭제+한칸 / 숫자3행 / 확인 = 5행
     // 문제 폰트
-    static let questionFontSize: Double = 0.12
+    static let questionFontSize: Double = 0.08
     // 버튼 폰트
     static let keyFontSize: Double = 0.06
 }

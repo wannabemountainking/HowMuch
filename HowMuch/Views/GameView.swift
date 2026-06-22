@@ -97,7 +97,7 @@ struct GameView: View {
                 .foregroundStyle(.white)
                 .padding(.trailing)
                 .padding(.trailing)
-            
+				
             
 		} //:HSTACK
         .padding(.bottom)
@@ -120,8 +120,8 @@ struct GameView: View {
 					RoundedRectangle(cornerRadius: 15)
                         .strokeBorder(Color.red, lineWidth: 5)
 						.frame(
-                            width:  geo.size.height * ComponentRatio.questionFontSize * 1.2,
-                            height: geo.size.height * ComponentRatio.questionFontSize * 1.2
+                            width:  geo.size.height * ComponentRatio.questionFontSize * 3,
+                            height: geo.size.height * ComponentRatio.questionFontSize * 1.5
 						)
 						.overlay {
 							Text(vm.userInput)
@@ -146,28 +146,75 @@ struct GameView: View {
 	@ViewBuilder
     private func KeypadView(geo: GeometryProxy) -> some View {
         VStack {
-            Grid(horizontalSpacing: 10, verticalSpacing: 10) {
-                ForEach(rows, id: \.self) { row in
+            Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+				ForEach(rows, id: \.self) { row in
                     GridRow {
-                        ForEach(row, id: \.self) { key in
-                            ZStack(alignment: .center) {
-
-                            }
-                        }
-                    }
-                }
-            }
+						ForEach(row, id: \.self) { key in
+							switch key {
+							case .digit(let num):
+								keyButtonView(geo: geo, key: key) {
+									vm.userInput.append(Key.digit(num).text)
+								}
+							case .deleteAll:
+								keyButtonView(geo: geo, key: key) {
+									vm.userInput = ""
+								}
+							case .delete:
+								keyButtonView(geo: geo, key: key) {
+									guard !vm.userInput.isEmpty else {return}
+									vm.userInput.removeLast()
+								}
+							case .confirm:
+								keyButtonView(geo: geo, key: key) {
+									vm.checkAnswer()
+									vm.nextQuestion()
+								}
+							case .none:
+								keyButtonView(geo: geo, key: key) { }
+							}
+                        } //:LOOP
+                    } //:GRID Row
+                } //:LOOP
+            }  //:GRID
         } //:VSTACK
+		.padding(20)
+	}
+	
+	@ViewBuilder
+	private func keyButtonView(geo: GeometryProxy, key: Key, completion: @escaping () -> Void) -> some View {
+		
+		let buttonHeight = ComponentRatio.keypadAreaHeight / ComponentRatio.keyHeight
+		
+		Button {
+			//action
+			completion()
+		} label: {
+			Text(key.text)
+				.font(
+					.system(
+						size: geo.size.height * ComponentRatio.keyFontSize,
+						weight: .semibold,
+						design: .rounded
+					)
+				)
+				.frame(maxWidth: .infinity)
+				.frame(height: geo.size.height * buttonHeight)
+				.foregroundStyle(Color(hex: key.keyTextColor))
+				.background(Color(hex: key.keyBackground))
+				.clipShape(
+					RoundedRectangle(cornerRadius: 10)
+				)
+				.shadow(radius: 2)
+		}
+		.gridCellColumns(key.gridCellColums)
+		
 	}
 }
 
 #Preview {
-    let vm = GameViewModel()
-    vm.startGame(level: .one)
+	var vm = GameViewModel()
 	
-	// 몇 개 문제에 답 상태 직접 주입
-	vm.questions[0].isCorrect = true
-	vm.questions[0].isCorrect = false  // 오답도 테스트
+	vm.startGame(level: .four)
 	
     return GameView()
         .environment(vm)

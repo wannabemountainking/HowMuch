@@ -44,36 +44,29 @@ enum Level: CaseIterable {
 }
 
 enum Operation: CaseIterable {
-    case add, subtract, multiply
+	case add, subtract
 	
 	var symbol: String {
 		switch self {
-		case .add: 
-			print("operation: add")
+		case .add:
 			return "plus"
 		case .subtract:
-			print("operation: subtract")
 			return "minus"
-		case .multiply:
-			print("operation: multiply")
-			return "multiply"
 		}
 	}
-    
-    func calculate(lhs: Int, rhs: Int) -> Int {
-        switch self {
-        case .add:
-            return lhs + rhs
-        case .subtract:
-            guard lhs >= rhs else {
-                print("앞의 수가 뒤의 수보다 작습니다")
-                return -1
-            }
-            return lhs - rhs
-        case .multiply:
-            return lhs * rhs
-        }
-    }
+	
+	func calculate(lhs: Int, rhs: Int) -> Int {
+		switch self {
+		case .add:
+			return lhs + rhs
+		case .subtract:
+			guard lhs >= rhs else {
+				print("앞의 수가 뒤의 수보다 작습니다")
+				return -1
+			}
+			return lhs - rhs
+		}
+	}
 }
 
 struct Question {

@@ -77,11 +77,12 @@ final class GameViewModel {
             addQuestion()
             currentIndex += 1
         case 14:
-            checkAnswer()
             currentScreen = Screen.result
+			currentIndex = 0
         default:
             print("Error")
         }
+		print(questions.count)
     }
     
     func addQuestion() {
