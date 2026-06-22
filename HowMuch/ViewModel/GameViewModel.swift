@@ -58,6 +58,14 @@ final class GameViewModel {
         default: return 0
         }
     }
+	
+	var resultImageName: String {
+		switch score {
+		case 100: return "perfectScore"
+		case 51...99: return "excellentScore"
+		default: return "demandingScore"
+		}
+	}
     
     func checkAnswer() {
         let rightAnswer = questions[currentIndex].answer()

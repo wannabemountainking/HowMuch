@@ -31,7 +31,7 @@ struct LevelSelectView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .foregroundStyle(Gradient(colors: [.mint, .yellow]))
-                    
+					
                     Text("숫자 놀이!")
                         .font(.system(size: 64))
                         .fontWeight(.semibold)
@@ -89,6 +89,7 @@ struct LevelSelectView: View {
 					Spacer()
                 }
             }
+			.shadow(radius: 15, x: 15, y: 15)
 			.onTapGesture {
 				vm.startGame(level: level)
 			}
