@@ -212,7 +212,7 @@ struct GameView: View {
 }
 
 #Preview {
-	var vm = GameViewModel()
+	let vm = GameViewModel()
 	
 	vm.startGame(level: .four)
 	

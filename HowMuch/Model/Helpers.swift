@@ -64,50 +64,68 @@ enum Key: Hashable {
 }
 
 enum ComponentRatio {
-    // 헤더
-    static let headerHeight: Double = 0.08
-    // 문제 표시 영역
-    static let questionAreaHeight: Double = 0.35
-    // 키패드 영역
-    static let keypadAreaHeight: Double = 0.50
-    // 키패드 버튼 높이 (키패드 영역 / 행 수 - 간격)
-    static let keyHeight: Double = 5   // 전체삭제+한칸 / 숫자3행 / 확인 = 5행
-    // 문제 폰트
-    static let questionFontSize: Double = 0.08
-    // 버튼 폰트
-    static let keyFontSize: Double = 0.06
+	// 헤더
+	static let headerHeight: Double = 0.08
+	// 문제 표시 영역
+	static let questionAreaHeight: Double = 0.35
+	// 키패드 영역
+	static let keypadAreaHeight: Double = 0.50
+	// 키패드 버튼 높이
+	static let keyHeight: Double = 5
+	// 문제 폰트
+	static let questionFontSize: Double = 0.08
+	// 버튼 폰트
+	static let keyFontSize: Double = 0.06
+
+	// 결과 화면
+	static let resultCharacterHeight: Double = 0.55
+	static let resultCardWidth: Double = 0.50
+	static let resultCardHeight: Double = 0.32
+	static let resultScoreFontSize: Double = 0.16
+	static let resultSubScoreFontSize: Double = 0.05
+	static let resultButtonWidth: Double = 0.50
+	static let resultButtonHeight: Double = 0.08
+	static let resultCardCornerRadius: Double = 0.03
+	static let resultButtonCornerRadius: Double = 0.02
 }
 
 enum HexColors {
-    // 메인 배경 (빨간색)
-    static let levelSelectBackground: String = "#FF6B6B"
-    // 단계 이름
-    static let levelSelectGrade: String = "#A32D2D"
-    // 2 단계 이름
-    static let levelSelectDescription: String = "#888888"
-	// 게임 배경
-	static let gameBackground: String = "#F7F7F2" // 크림 (전체)
-	static let gameHeader: String = "#FF6B6B"  // 빨강 (헤더)
+	// 메인 배경
+	static let mainBackground: String = "#FF6B6B"
+	// 단계 이름
+	static let levelSelectGrade: String = "#A32D2D"
+	static let levelSelectDescription: String = "#888888"
 
-	// 게임 문제 표시 영역
-	static let questionBackground: String  = "#FFF8F8"  // 연한 핑크
-	static let questionText: String = "#0B2D39"  // 진한 네이비 (숫자)
-	static let operatorText: String = "#FF6B6B"  // 빨강 (연산자)
-	static let answerBox: String = "#FF6B6B"  // 빨강 (입력 박스 테두리)
+	// 게임
+	static let gameBackground: String = "#F7F7F2"
+	static let gameHeader: String = "#FF6B6B"
+	static let questionBackground: String = "#FFF8F8"
+	static let questionText: String = "#0B2D39"
+	static let operatorText: String = "#FF6B6B"
+	static let answerBox: String = "#FF6B6B"
 
-	// 키패드 - 숫자
-	static let digitKey: String = "#FFFFFF"  // 흰색
-	static let digitKeyText: String = "#0B2D39"  // 네이비
-	static let digitKeyBorder: String = "#E8E0E0"  // 연한 회색
+	// 키패드
+	static let digitKey: String = "#FFFFFF"
+	static let digitKeyText: String = "#0B2D39"
+	static let digitKeyBorder: String = "#E8E0E0"
+	static let deleteKey: String = "#FFBF69"
+	static let deleteKeyText: String = "#633806"
+	static let deleteAllKey: String = "#FFE8CC"
+	static let deleteAllKeyText: String = "#854F0B"
+	static let confirmKey: String = "#1FB6AA"
+	static let confirmKeyText: String = "#FFFFFF"
 
-	// 키패드 - 액션
-	static let deleteKey: String = "#FFBF69"  // 앰버 (한칸삭제)
-	static let deleteKeyText: String = "#633806"  // 진한 갈색
-	static let deleteAllKey: String = "#FFE8CC"  // 연한 오렌지 (전체삭제)
-	static let deleteAllKeyText: String = "#854F0B"  // 갈색
-	static let confirmKey: String = "#1FB6AA"  // 틸 (확인)
-	static let confirmKeyText: String = "#FFFFFF"  // 흰색
-
+	// 결과 화면
+	static let resultBackground: String = "#FF6B6B"
+	static let resultCard: String = "#FFFFFF"
+	static let resultScoreText: String = "#FF6B6B"
+	static let resultDivider: String = "#FFE0E0"
+	static let resultSubText: String = "#888888"
+	static let resultSlash: String = "#CCCCCC"
+	static let resultRetryButton: String = "#1FB6AA"
+	static let resultRetryText: String = "#FFFFFF"
+	static let resultQuitButton: String = "#FFE8CC"
+	static let resultQuitText: String = "#854F0B"
 }
 
 extension Color {

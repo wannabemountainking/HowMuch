@@ -21,7 +21,7 @@ struct LevelSelectView: View {
     var body: some View {
         ZStack {
             // Background Color
-            Color(hex: HexColors.levelSelectBackground)
+			Color(hex: HexColors.mainBackground)
                 .ignoresSafeArea()
             // Content
             VStack(alignment: .center, spacing: 20) {

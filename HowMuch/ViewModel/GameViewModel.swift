@@ -39,25 +39,24 @@ final class GameViewModel {
         return Int(round((Double(correctCount) / Double(questions.count) * 100)))
     }
     
-    var resultMessage: String {
-        """
-        \(score) 점 획득!
-        \(["⭐️", "⭐️", "⭐️", "⭐️", "⭐️"][0..<starCount].joined())
-        \(questions.count) 문제 중
-        \(correctCount) 문제를 맞췄습니다
-        """
-    }
-    
-    var starCount: Int {
-        switch score {
-        case 1...25: return 1
-        case 26...50: return 2
-        case 51...75: return 3
-        case 76...99: return 4
-        case 100: return 5
-        default: return 0
-        }
-    }
+//    var correctionMessage: String {
+//        """
+//		
+//        """
+//    }
+//    
+//    var starCount: Int {
+//        switch score {
+//        case 1...25: return 1
+//        case 26...50: return 2
+//        case 51...75: return 3
+//        case 76...99: return 4
+//        case 100: return 5
+//        default: return 0
+//        }
+//    }
+	
+	
 	
 	var resultImageName: String {
 		switch score {
