@@ -28,7 +28,7 @@ struct ResultView: View {
 						.frame(width: geo.size.height * ComponentRatio.resultCardWidth, height: geo.size.height * ComponentRatio.resultCardHeight)
 						.foregroundStyle(Color(hex: HexColors.resultCard))
 						.overlay(alignment: .center) {
-							VStack(alignment: .center, spacing: 20) {
+							VStack(alignment: .center, spacing: 10) {
 								// 13/15
 								HStack(alignment: .lastTextBaseline) {
 									Text("\(vm.correctCount)")
@@ -50,8 +50,8 @@ struct ResultView: View {
 										)
 										.foregroundStyle(Color(hex: HexColors.resultSlash))
 								}
-								Divider()
-									.foregroundStyle(Color(hex: HexColors.resultDivider))
+                                .underline(color: Color(hex: HexColors.resultDivider))
+                                
 								HStack(alignment: .lastTextBaseline) {
 									Text("\(vm.score)")
 									Text("점")
@@ -69,7 +69,9 @@ struct ResultView: View {
 					} label: {
 						Text("틀린 문제 다시 풀기")
 							.font(.system(size: geo.size.height * 0.05, weight: .medium, design: .rounded))
+                        
 							.foregroundStyle(.white)
+                        
 					}
 
 				} //:VSTACK
