@@ -84,7 +84,7 @@ enum ComponentRatio {
 	static let resultScoreFontSize: Double = 0.16
 	static let resultSubScoreFontSize: Double = 0.05
 	static let resultButtonWidth: Double = 0.50
-	static let resultButtonHeight: Double = 0.08
+	static let resultButtonHeight: Double = 0.05
 	static let resultCardCornerRadius: Double = 0.03
 	static let resultButtonCornerRadius: Double = 0.02
 }

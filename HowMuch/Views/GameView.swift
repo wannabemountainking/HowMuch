@@ -42,10 +42,9 @@ struct GameView: View {
 		HStack {
             Text("\(vm.currentLevel.id) 단계")
 				.font(
-					.system(
-						size: geo.size.height * ComponentRatio.headerHeight * 0.5,
-						weight: .semibold,
-						design: .rounded
+					.custom(
+						"Cafe24 Ssurround",
+						size: geo.size.height * ComponentRatio.headerHeight * 0.5
 					)
 				)
                 .foregroundStyle(.white)
@@ -191,10 +190,9 @@ struct GameView: View {
 		} label: {
 			Text(key.text)
 				.font(
-					.system(
-						size: geo.size.height * ComponentRatio.keyFontSize,
-						weight: .semibold,
-						design: .rounded
+					.custom(
+						"Fradoka",
+						size: geo.size.height * ComponentRatio.keyFontSize
 					)
 				)
 				.frame(maxWidth: .infinity)

@@ -18,14 +18,14 @@ struct ResultView: View {
 			ZStack(alignment: .center) {
 				Color(hex: HexColors.resultBackground).ignoresSafeArea()
 				
-				VStack(alignment: .center, spacing: 0) {
+				VStack(alignment: .center, spacing: 30) {
 					Image(vm.resultImageName)
 						.resizable()
 						.scaledToFit()
 						.frame(height: geo.size.height / 2.5)
 						.padding(20)
 					RoundedRectangle(cornerRadius: geo.size.height * ComponentRatio.resultCardCornerRadius)
-						.frame(width: geo.size.height * ComponentRatio.resultCardWidth, height: geo.size.height * ComponentRatio.resultCardHeight)
+						.frame(width: geo.size.width * ComponentRatio.resultCardWidth, height: geo.size.height * ComponentRatio.resultCardHeight)
 						.foregroundStyle(Color(hex: HexColors.resultCard))
 						.overlay(alignment: .center) {
 							VStack(alignment: .center, spacing: 10) {
@@ -50,31 +50,71 @@ struct ResultView: View {
 										)
 										.foregroundStyle(Color(hex: HexColors.resultSlash))
 								}
-                                .underline(color: Color(hex: HexColors.resultDivider))
+								.overlay(alignment: .bottom) {
+									GeometryReader { scoreGeo in
+										RoundedRectangle(cornerRadius: 6)
+											.frame(
+												width: scoreGeo.size.width,
+												height: 6
+											)
+											.foregroundStyle(Color(hex: HexColors.resultDivider))
+											.offset(y: scoreGeo.size.height * 0.95)
+									}
+								}
                                 
 								HStack(alignment: .lastTextBaseline) {
 									Text("\(vm.score)")
+										.font(.system(size: geo.size.height * ComponentRatio.resultSubScoreFontSize, weight: .medium, design: .rounded))
 									Text("점")
+										.font(.custom("Fredoka", size: geo.size.height * ComponentRatio.resultButtonHeight))
 								}
-								.font(.system(size: geo.size.height * ComponentRatio.resultSubScoreFontSize, weight: .medium, design: .rounded))
 								.foregroundStyle(Color(hex: HexColors.resultSlash))
 								
 							}
 							
 						} // : Card
 					
-					Button {
-						//action
+					VStack(spacing: 20) {
+						Button {
+							//action
+							vm.retry()
+						} label: {
+							Text("틀린 문제 다시 풀기")
+								.font(.custom("Fredoka", size: geo.size.height * 0.04))
+								.frame(
+									width: geo.size.width * ComponentRatio.resultButtonWidth,
+									height: geo.size.height * ComponentRatio.resultButtonHeight,
+								)
+								.foregroundStyle(.white)
+								.padding(12)
+								.background(Color(hex: HexColors.resultRetryButton))
+								.clipShape(
+									RoundedRectangle(cornerRadius: 20)
+								)
+							
+						}
 						
-					} label: {
-						Text("틀린 문제 다시 풀기")
-							.font(.system(size: geo.size.height * 0.05, weight: .medium, design: .rounded))
-                        
-							.foregroundStyle(.white)
-                        
-					}
+						Button {
+							// action
+							vm.quit()
+						} label: {
+							Text("그만하기")
+								.font(.custom("Fredoka", size:  geo.size.height * 0.04))
+								.frame(
+									width: geo.size.width * ComponentRatio.resultButtonWidth,
+									height: geo.size.height * ComponentRatio.resultButtonHeight,
+								)
+								.foregroundStyle(.white)
+								.padding(12)
+								.background(Color(hex: HexColors.resultRetryButton))
+								.clipShape(
+									RoundedRectangle(cornerRadius: 20)
+								)
+						}
 
+					} //:VSTACK
 				} //:VSTACK
+				.padding(.bottom, 20)
 			} //:ZSTACK
 		} //:GEOMETRY
     }

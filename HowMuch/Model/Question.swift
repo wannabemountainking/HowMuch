@@ -69,7 +69,8 @@ enum Operation: CaseIterable {
 	}
 }
 
-struct Question {
+struct Question: Identifiable {
+	let id = UUID()
 	var operation: Operation
 	var lhs: Int
 	var rhs: Int

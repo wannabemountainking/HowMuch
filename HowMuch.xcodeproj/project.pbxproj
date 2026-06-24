@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE8358382FEB6ACE00AAA09A /* Cafe24Ssurround-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE8358372FEB6ACE00AAA09A /* Cafe24Ssurround-v2.0.ttf */; };
+		EE83583A2FEB726D00AAA09A /* Cafe24SsurroundAir-v1.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE8358392FEB726D00AAA09A /* Cafe24SsurroundAir-v1.1.ttf */; };
 		EEC1DB362FE7F47A00D7C8C2 /* Fredoka-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */; };
 		EEC1DB3A2FE7F67000D7C8C2 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE8358372FEB6ACE00AAA09A /* Cafe24Ssurround-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24Ssurround-v2.0.ttf"; sourceTree = "<group>"; };
+		EE8358392FEB726D00AAA09A /* Cafe24SsurroundAir-v1.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24SsurroundAir-v1.1.ttf"; sourceTree = "<group>"; };
 		EEBB4AB22FE278DF001B72C9 /* HowMuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowMuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Medium.ttf"; sourceTree = "<group>"; };
 		EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 				EEBB4AB32FE278DF001B72C9 /* Products */,
 				EEC1DB352FE7F47A00D7C8C2 /* Fredoka-Medium.ttf */,
 				EEC1DB392FE7F67000D7C8C2 /* Nunito-SemiBold.ttf */,
+				EE8358372FEB6ACE00AAA09A /* Cafe24Ssurround-v2.0.ttf */,
+				EE8358392FEB726D00AAA09A /* Cafe24SsurroundAir-v1.1.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +137,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE83583A2FEB726D00AAA09A /* Cafe24SsurroundAir-v1.1.ttf in Resources */,
+				EE8358382FEB6ACE00AAA09A /* Cafe24Ssurround-v2.0.ttf in Resources */,
 				EEC1DB3A2FE7F67000D7C8C2 /* Nunito-SemiBold.ttf in Resources */,
 				EEC1DB362FE7F47A00D7C8C2 /* Fredoka-Medium.ttf in Resources */,
 			);
