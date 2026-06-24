@@ -56,16 +56,19 @@ final class GameViewModel {
     
     func checkAnswer() {
         let rightAnswer = questions[currentIndex].answer()
-        if let userAnswer = Int(userInput) {
-			if !isRetryMode {
-				questions[currentIndex].isCorrect = (rightAnswer == userAnswer)
-			} else {
-				if let idx = questions.firstIndex(where: { $0.id == retryQuestions[retryIndex].id }) {
-					questions[idx].isCorrect = true
-				}
-			}
+        let question = questions[currentIndex]
+        if isRetryMode {
+            if let userAnswer = Int(userInput) {
+                if let idx = questions.firstIndex(where: { $0.id == question.id }) {
+                    questions[idx].isCorrect = (rightAnswer == userAnswer)
+                }
+            }
         } else {
-            questions[currentIndex].isCorrect = false
+            if let userAnswer = Int(userInput) {
+                questions[currentIndex].isCorrect = (rightAnswer == userAnswer)
+            } else {
+                questions[currentIndex].isCorrect = nil
+            }
         }
     }
     
